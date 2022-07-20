@@ -1,3 +1,8 @@
+function showLog (report){
+    console.log(report);
+}
+
+
 const puppeteer = require('puppeteer');
 
 var bookTitle = "";
@@ -5,24 +10,27 @@ var authorName = "";
 var publisherName = "";
 var language = "";
 var yearIndication = "";
-var bookSearch = "Cosmos"; // Variável bookSearch será definida em HardCode temporariamente para fins de teste. Porém deverá vir do formulário na tela da aplicação Catalogar Livro.
-
+var bookSearch = "Eros e Psique"; // Variável bookSearch será definida em HardCode temporariamente para fins de teste. Porém deverá vir do formulário na tela da aplicação Catalogar Livro.
+var sponsorNumber = 0;
 async function bookFinder(){
 
     // Responsável por abrir o navegador, pesquisar pelo livro e preencher o formulário de forma automática.
     const browser = await puppeteer.launch({headless: true});
     const page = await browser.newPage();
     await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.181 Safari/537.36')
-    
-    // Instruções gerais para procura do livro no site da Amazon (foda-se. Desisto.).
+    showLog('Using Google Chrome.');
+    // Instruções gerais para procura do livro no site da Amazon.
     await page.goto ('https://www.amazon.com.br/'); 
+    showLog('The page was loaded! Status Code 200.');
 
     await page.waitForSelector('input[type="text"]');
     await page.click('input[type="text"]');
     await page.keyboard.sendCharacter (bookSearch);
     await page.click('input[type="submit"]');
+    showLog('Searching for book...');
 
     // Mapeamento dos possíveis resultados provenientes de patrocínio na página da amazon feita nos três primeiros livros.
+    showLog('Maping possible sponsors on page...');
     const firstElementSponsor = await page.waitForSelector('div[data-index="1"]');
     const firstValue = await firstElementSponsor.evaluate(el => el.textContent);
     const firstResult = firstValue.includes('Patrocinados');
@@ -34,6 +42,7 @@ async function bookFinder(){
     const thirdElementSponsor = await page.waitForSelector('div[data-index="3"]');
     const thirdValue = await thirdElementSponsor.evaluate(el => el.textContent);
     const thirdResult = thirdValue.includes('Patrocinados');
+    
 
     let mapImageElements = await page.$$('[class="a-size-base-plus a-color-base a-text-normal"]');
 
