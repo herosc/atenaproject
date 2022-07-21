@@ -4,7 +4,7 @@ function showLog (report){
 
 
 const puppeteer = require('puppeteer');
-var bookSearch = "cosmos"; // Variável bookSearch será definida em HardCode temporariamente para fins de teste. Porém deverá vir do formulário na tela da aplicação Catalogar Livro.
+var bookSearch = "cafeteira";
 
 async function bookFinder(){
 
