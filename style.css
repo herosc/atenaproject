@@ -1,10 +1,46 @@
-nav ul {
-	padding: 0;
-	margin: 0;
-	list-style: none;
+body{
+	background-color: #CB4C78;
+	font-family: 'Courier New', Courier, monospace;
+	color: #FFFFFF;
 }
 
-nav ul li {
-	float: left;
-	position: relative;
+.searchBar {
+	padding: 15px;
+	background-color: #FFFFFF;
+	color: #CB4C78;
+	text-align: center;
+	font-weight: bolder;
+}
+
+ul li{
+	list-style-type: none;
+	text-align: justify;
+}
+
+ul li input{
+	width: 20%;
+	height: 5%;
+	border-radius: 10px 20px;
+}
+
+h1 input{
+	width: 50%;
+	height: 5%;
+}
+
+.searchButton{
+	height: 5%;
+	width: 10%;
+	background-color: #CB4C78;
+	color: #FFFFFF;
+	border-radius: 10px 20px;
+}
+
+.searchButton:hover{
+	cursor: pointer;
+	height: 5%;
+	width: 10%;
+	background-color: #FFFFFF;;
+	color: #CB4C78;
+	border-radius: 10px 20px;
 }

@@ -16,7 +16,7 @@ async function bookFinder(){
     // Instruções gerais para procura do livro no site da Amazon.
     await page.goto ('https://www.amazon.com.br/'); 
 
-    page.setDefaultTimeout(3000);
+    page.setDefaultTimeout(30000);
 
     await page.waitForSelector('input[type="text"]');
     await page.click('input[type="text"]');
