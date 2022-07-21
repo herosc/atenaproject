@@ -7,7 +7,7 @@
 
 > EN - "Projeto Atena" is being developed by the "Rotaract Club de São Paulo Brás" with the objective of providing the Bibliotecando project with a functional book cataloging system, with a friendly interface and intuitive usability.
 
-># Instalção:
+># Instalação:
 >## Necessário instalar o NodeJS em sua máquina.
 
 >### Windows
@@ -55,4 +55,4 @@
   
 ># Instalando o Projeto via Git
 
-> Basta escolher uma pasta qualquer em seu computador e digitar no terminal o comando **_ git pull "https://github.com/herosc/atenaproject.git"_** e aguardar. Após isso, digite o comando **_cd "nome da pasta em que o projeto foi baixado sem as aspas"_**. Uma vez na pasta do projeto, você deverá rodar o último comando para instalar todas as dependências relacionadas ao Puppeteer: **_npm i puppeteer_**
+> Basta escolher uma pasta qualquer em seu computador e digitar no terminal o comando **_git clone "https://github.com/herosc/atenaproject.git_"** e aguardar. Após isso, digite o comando **_cd "nome da pasta em que o projeto foi baixado sem as aspas"_**. Uma vez na pasta do projeto, você deverá rodar o último comando para instalar todas as dependências relacionadas ao Puppeteer: **_npm i puppeteer_**
