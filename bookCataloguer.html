@@ -3,8 +3,10 @@
 <html>
 
     <head>
+
         <title>Atena Project</title>
         <link rel="stylesheet" href="style.css">
+        <script type="module" src="book_finder.js"></script>
     </head>
 
     <body>
@@ -12,7 +14,7 @@
             <h1>
                 <p> Pesquisa de livro para catalogar</p>
                 <input type="text" name="searchField" placeholder="Procure pelo Título.">
-                <button class="searchButton">Buscar</button>
+                <button class="searchButton" (click)="bookFinder()">Buscar</button>
             </h1>
 
             <h2>
