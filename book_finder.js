@@ -1,8 +1,4 @@
-// const puppeteer = require('puppeteer')
-
-// var catalogation = require('./book_cataloguer');
-
-async function catalogue(completeTitle){
+async function catalogue(completeTitle,authorID,pagesAmount,publisherID,languageID){
 
     // const pageID = 'input[class="whsOnd zHQkBf"]';
     const puppeteer = require('puppeteer');
@@ -16,8 +12,22 @@ async function catalogue(completeTitle){
 
     await page.waitForSelector('div[class="aCsJod oJeWuf"]');
     let field = await page.$$('div[class="aCsJod oJeWuf"]'); 
+
+    await page.waitForNavigation()
     await field[0].click();
     await page.keyboard.sendCharacter (completeTitle);
+
+    await field[2].click();
+    await page.keyboard.sendCharacter (authorID);
+
+    await field[3].click();
+    await page.keyboard.sendCharacter (pagesAmount);
+
+    await field[6].click();
+    await page.keyboard.sendCharacter (publisherID);
+
+    await field[7].click();
+    await page.keyboard.sendCharacter (languageID);
 }
 
 async function bookFinder(searchTerm){
@@ -88,6 +98,16 @@ async function bookFinder(searchTerm){
         console.log('O título do livro é '+bookTitle);
     }catch{
         console.log('Título não encontrado na página.');
+        var bookTitle = "";
+    }
+
+    try {
+        var avalibleAuthor = await page.waitForSelector('a[class="a-size-base a-link-normal a-text-normal"]');
+        var authorName = await avalibleAuthor.evaluate(el => el.textContent);
+        console.log('O autor do livro é '+authorName);
+    }catch{
+        console.log('Nome do autor não encontrado.');
+        var authorName = "";
     }
 
     try {
@@ -97,6 +117,7 @@ async function bookFinder(searchTerm){
         console.log('O nome da Editora é '+publisherName);
     }catch{
         console.log('Nome da editora não encontrado na busca.');
+        var publisherName = "";
     }
 
     try {
@@ -105,6 +126,7 @@ async function bookFinder(searchTerm){
         console.log('O idioma do livro é '+language);
     }catch{
         console.log('Idioma do livro não disponível para consulta.');
+        var language = "";
     }
 
     try {
@@ -113,17 +135,14 @@ async function bookFinder(searchTerm){
         console.log('O livro tem '+pages);
     }catch{
         console.log('Quantidade de páginas não encontrada na busca.');
+        var pages = "";
     }
 
-    
+    await browser.close();
 
-    // await browser.close();
-
-    catalogue(bookTitle);
+    catalogue(bookTitle,authorName,pages,publisherName,language);
 
     console.log("FIM");
 }
 
-
-
-bookFinder("Cosmos");
+bookFinder("anjos e demonios");
